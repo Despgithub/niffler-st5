@@ -1,0 +1,25 @@
+package guru.qa.niffler.pages;
+
+import com.codeborne.selenide.SelenideElement;
+
+import static com.codeborne.selenide.Selenide.$x;
+
+public class LoginPage {
+
+    private final SelenideElement usernameInput = $x("//input[@name='username']");
+    private final SelenideElement passwordInput = $x("//input[@name='password']");
+    private final SelenideElement submitButton = $x("//button[@type='submit']");
+
+    public void setUsername(String username) {
+        usernameInput.setValue(username);
+    }
+
+    public void setPassword(String password) {
+        passwordInput.setValue(password);
+    }
+
+    public void clickSubmitButton() {
+        submitButton.click();
+    }
+
+}
