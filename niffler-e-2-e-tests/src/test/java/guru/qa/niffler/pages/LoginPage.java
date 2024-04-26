@@ -10,12 +10,14 @@ public class LoginPage {
     private final SelenideElement passwordInput = $x("//input[@name='password']");
     private final SelenideElement submitButton = $x("//button[@type='submit']");
 
-    public void setUsername(String username) {
+    public LoginPage setUsername(String username) {
         usernameInput.setValue(username);
+        return this;
     }
 
-    public void setPassword(String password) {
+    public LoginPage setPassword(String password) {
         passwordInput.setValue(password);
+        return this;
     }
 
     public void clickSubmitButton() {

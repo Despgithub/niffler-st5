@@ -8,7 +8,7 @@ public class WelcomePage {
 
     private final SelenideElement loginButton = $x("//a[.='Login'] ");
 
-    public void loginButtonClick() {
+    public void clickLoginButton() {
         loginButton.click();
     }
 

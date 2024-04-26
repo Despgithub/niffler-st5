@@ -33,10 +33,10 @@ public class SpendingTest {
     @BeforeEach
     void doLogin() {
         Selenide.open("http://127.0.0.1:3000/main");
-        welcomePage.loginButtonClick();
-        loginPage.setUsername("duck");
-        loginPage.setPassword("DUCK-z7h3");
-        loginPage.clickSubmitButton();
+        welcomePage.clickLoginButton();
+        loginPage.setUsername("duck")
+                .setPassword("DUCK-z7h3")
+                .clickSubmitButton();
     }
 
     @Test
@@ -59,8 +59,8 @@ public class SpendingTest {
     @Test
     void spendingShouldBeDeletedAfterTableAction(SpendJson spendJson) {
         SelenideElement rowWithSpending = mainPage.findSpendingRow(spendJson.description());
-        mainPage.chooseSpending(rowWithSpending);
-        mainPage.deleteSelectedButtonClick();
-        mainPage.checkSpendings(0);
+        mainPage.chooseSpending(rowWithSpending)
+                .clickDeleteSelectedButton()
+                .checkSpendings(0);
     }
 }

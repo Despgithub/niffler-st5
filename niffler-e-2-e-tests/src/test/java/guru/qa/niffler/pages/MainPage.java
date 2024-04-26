@@ -18,12 +18,14 @@ public class MainPage {
         return spendingRows.find(text(description));
     }
 
-    public void chooseSpending(SelenideElement spendings) {
-        spendings.$$x("td").first().scrollTo().click();
+    public MainPage chooseSpending(SelenideElement spendings) {
+        spendings.$x("td").scrollTo().click();
+        return this;
     }
 
-    public void deleteSelectedButtonClick() {
+    public MainPage clickDeleteSelectedButton() {
         deleteSelectedButton.click();
+        return this;
     }
 
     public void checkSpendings(int expectedSize) {
