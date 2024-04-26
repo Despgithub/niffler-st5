@@ -10,6 +10,9 @@ import guru.qa.niffler.model.CurrencyValues;
 import guru.qa.niffler.model.SpendJson;
 import io.qameta.allure.Allure;
 import org.junit.jupiter.api.AfterEach;
+import guru.qa.niffler.pages.LoginPage;
+import guru.qa.niffler.pages.MainPage;
+import guru.qa.niffler.pages.WelcomePage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.OutputType;
@@ -26,18 +29,21 @@ import static com.codeborne.selenide.Selenide.$;
 @WebTest
 public class SpendingTest {
 
+    private final WelcomePage welcomePage = new WelcomePage();
+    private final LoginPage loginPage = new LoginPage();
+    private final MainPage mainPage = new MainPage();
+
     static {
         Configuration.browserSize = "1920x1080";
     }
 
     @BeforeEach
     void doLogin() {
-        // createSpend
-        Selenide.open("http://127.0.0.1:3000/");
-        $("a[href*='redirect']").click();
-        $("input[name='username']").setValue("dima");
-        $("input[name='password']").setValue("12345");
-        $("button[type='submit']").click();
+        Selenide.open("http://127.0.0.1:3000/main");
+        welcomePage.clickLoginButton();
+        loginPage.setUsername("duck")
+                .setPassword("DUCK-z7h3")
+                .clickSubmitButton();
     }
 
     @Test
@@ -69,15 +75,9 @@ public class SpendingTest {
     )
     @Test
     void spendingShouldBeDeletedAfterTableAction(SpendJson spendJson) {
-        SelenideElement rowWithSpending = $(".spendings-table tbody")
-                .$$("tr")
-                .find(text(spendJson.description()))
-                .scrollIntoView(false);
-
-        rowWithSpending.$$("td").first().click();
-        $(".spendings__bulk-actions button").click();
-
-        $(".spendings-table tbody").$$("tr")
-                .shouldHave(size(0));
+        SelenideElement rowWithSpending = mainPage.findSpendingRow(spendJson.description());
+        mainPage.chooseSpending(rowWithSpending)
+                .clickDeleteSelectedButton()
+                .checkSpendings(0);
     }
 }
