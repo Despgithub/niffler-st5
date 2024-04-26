@@ -8,20 +8,19 @@ import guru.qa.niffler.jupiter.annotation.Spend;
 import guru.qa.niffler.jupiter.annotation.meta.WebTest;
 import guru.qa.niffler.model.CurrencyValues;
 import guru.qa.niffler.model.SpendJson;
-import io.qameta.allure.Allure;
-import org.junit.jupiter.api.AfterEach;
 import guru.qa.niffler.pages.LoginPage;
 import guru.qa.niffler.pages.MainPage;
 import guru.qa.niffler.pages.WelcomePage;
+import io.qameta.allure.Allure;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.io.ByteArrayInputStream;
 import java.util.Objects;
 
-import static com.codeborne.selenide.CollectionCondition.size;
-import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
@@ -35,14 +34,18 @@ public class SpendingTest {
 
     static {
         Configuration.browserSize = "1920x1080";
+        Configuration.browser = "chrome";
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--incognito");
+        Configuration.browserCapabilities = chromeOptions;
     }
 
     @BeforeEach
     void doLogin() {
         Selenide.open("http://127.0.0.1:3000/main");
         welcomePage.clickLoginButton();
-        loginPage.setUsername("duck")
-                .setPassword("DUCK-z7h3")
+        loginPage.setUsername("dima")
+                .setPassword("12345")
                 .clickSubmitButton();
     }
 
@@ -65,7 +68,7 @@ public class SpendingTest {
     }
 
     @Category(
-            category = "Обучение3",
+            category = "Обучение",
             username = "dima"
     )
     @Spend(

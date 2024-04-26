@@ -2,12 +2,7 @@ package guru.qa.niffler.jupiter.extension;
 
 import guru.qa.niffler.model.UserJson;
 import io.qameta.allure.Allure;
-import org.junit.jupiter.api.extension.AfterEachCallback;
-import org.junit.jupiter.api.extension.BeforeEachCallback;
-import org.junit.jupiter.api.extension.ExtensionContext;
-import org.junit.jupiter.api.extension.ParameterContext;
-import org.junit.jupiter.api.extension.ParameterResolutionException;
-import org.junit.jupiter.api.extension.ParameterResolver;
+import org.junit.jupiter.api.extension.*;
 
 import java.util.Date;
 import java.util.Queue;
