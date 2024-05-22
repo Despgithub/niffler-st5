@@ -13,7 +13,7 @@ public class PeoplePage {
     private final ElementsCollection peopleRows = $$x("//table[@class='table abstract-table']/tbody/tr");
     private final String submitInvitation = ".//div[@data-tooltip-id='submit-invitation']";
 
-    public void checkSendInvitatation(String userName) {
+    public void checkSendInvitation(String userName) {
         SelenideElement td = findUserByName(userName);
         td.shouldHave(text("Pending invitation"));
     }
@@ -23,7 +23,7 @@ public class PeoplePage {
         td.shouldHave(text("You are friends"));
     }
 
-    public void checkReceiveInvitatation(String userName) {
+    public void checkReceiveInvitation(String userName) {
         SelenideElement td = findUserByName(userName);
         td.$(By.xpath(submitInvitation)).shouldBe(visible);
     }

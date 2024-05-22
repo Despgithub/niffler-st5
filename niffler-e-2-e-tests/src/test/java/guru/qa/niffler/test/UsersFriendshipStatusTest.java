@@ -37,10 +37,10 @@ public class UsersFriendshipStatusTest {
     }
 
     @Test
-    void userShouldHavePendingInvitationsStatus(@User(INVITATION_SEND) UserJson userForTest, @User(INVITATION_RECEIVED) UserJson anotherUserForTest) {
+    void userShouldHavePendingInvitationStatus(@User(INVITATION_SEND) UserJson userForTest, @User(INVITATION_RECEIVED) UserJson anotherUserForTest) {
         loginPage.login(userForTest.username(), userForTest.testData().password());
         mainPage.openPeoplePage();
-        peoplePage.checkSendInvitatation(anotherUserForTest.username());
+        peoplePage.checkSendInvitation(anotherUserForTest.username());
     }
 
     @Test
@@ -51,10 +51,10 @@ public class UsersFriendshipStatusTest {
     }
 
     @Test
-    void userShouldHaveReceivedInvite(@User(INVITATION_RECEIVED) UserJson userForTest, @User(INVITATION_SEND) UserJson anotherUserForTest) {
+    void userShouldHaveReceivedInvitation(@User(INVITATION_RECEIVED) UserJson userForTest, @User(INVITATION_SEND) UserJson anotherUserForTest) {
         loginPage.login(userForTest.username(), userForTest.testData().password());
         mainPage.openPeoplePage();
-        peoplePage.checkReceiveInvitatation(anotherUserForTest.username());
+        peoplePage.checkReceiveInvitation(anotherUserForTest.username());
     }
 
 }
