@@ -12,6 +12,7 @@ public class MainPage {
 
     private final ElementsCollection spendingRows = $$x("//table[@class='table spendings-table']/tbody/tr");
     private final SelenideElement deleteSelectedButton = $x(".//button[.='Delete selected']");
+    private final SelenideElement allPeopleLink = $x("//a[@href='/people']");
 
 
     public SelenideElement findSpendingRow(String description) {
@@ -30,6 +31,11 @@ public class MainPage {
 
     public void checkSpendings(int expectedSize) {
         spendingRows.shouldHave(size(expectedSize));
+    }
+
+    public PeoplePage openPeoplePage() {
+        allPeopleLink.click();
+        return new PeoplePage();
     }
 
 }

@@ -24,4 +24,10 @@ public class LoginPage {
         submitButton.click();
     }
 
+    public void login(String username, String password) {
+        setUsername(username)
+                .setPassword(password)
+                .clickSubmitButton();
+    }
+
 }
