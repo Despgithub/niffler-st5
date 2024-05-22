@@ -5,13 +5,13 @@ import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$$x;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PeoplePage {
 
     private final ElementsCollection peopleRows = $$x("//table[@class='table abstract-table']/tbody/tr");
-    private final String submitInvitation = "//div[@data-tooltip-id='submit-invitation']";
+    private final String submitInvitation = ".//div[@data-tooltip-id='submit-invitation']";
 
     public void checkSendInvitatation(String userName) {
         SelenideElement td = findUserByName(userName);
@@ -25,7 +25,7 @@ public class PeoplePage {
 
     public void checkReceiveInvitatation(String userName) {
         SelenideElement td = findUserByName(userName);
-        assertTrue(td.findElement(By.xpath(submitInvitation)).isDisplayed());
+        td.$(By.xpath(submitInvitation)).shouldBe(visible);
     }
 
     private SelenideElement findUserByName(String userName) {
